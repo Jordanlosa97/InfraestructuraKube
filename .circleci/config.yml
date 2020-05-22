@@ -29,9 +29,9 @@ jobs:
          command: |
            cd ./Configuracion
            scp -o StrictHostKeyChecking=no -r ./* ec2-user@54.147.61.160:~/
-           ssh -o StrictHostKeyChecking=no ec2-user@54.147.61.160  "kubectl delete all --all"
-           ssh -o StrictHostKeyChecking=no ec2-user@54.147.61.160  "kubectl delete all --all"
-           ssh -o StrictHostKeyChecking=no ec2-user@54.147.61.160  "kubectl apply -f deployment.yaml"
+           ssh -o StrictHostKeyChecking=no ec2-user@54.147.61.160 "kubectl delete all --all"
+           ssh -o StrictHostKeyChecking=no ec2-user@54.147.61.160 "kubectl delete all --all"
+           ssh -o StrictHostKeyChecking=no ec2-user@54.147.61.160 "kubectl apply -f deployment.yaml"
 workflows:
   version: 2
   build: 
