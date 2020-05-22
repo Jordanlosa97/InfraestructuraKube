@@ -480,27 +480,43 @@ spec:
       containers:
         - name: webapp
           image: httpd:2.4
+          volumeMounts:
+          - name: index-configdos
+            mountPath: /usr/local/apache2/htdocs/
         - name: webappdos
           image: httpd:2.4
           volumeMounts:
           - name: server-config
             mountPath: /usr/local/apache2/conf/httpd.conf
             subPath: httpd.conf
+          - name: index-config
+            mountPath: /usr/local/apache2/htdocs/
         - name: nginx
           image: nginx:alpine
           ports:
           - containerPort: 81
           volumeMounts:
-            - name: nginx-proxy-config
-              mountPath: /etc/nginx/nginx.conf
-              subPath: nginx.conf
+          - name: nginx-proxy-config
+            mountPath: /etc/nginx/nginx.conf
+            subPath: nginx.conf
       volumes:
+        - name: index-config
+          hostPath:
+            path: "/home/ec2-user/App1/"
+            type: Directory
         - name: nginx-proxy-config
           configMap:
             name: config-map
         - name: server-config
           configMap:
             name: server-map
+        - name: server-2-config
+          configMap:
+            name: server-2-map
+        - name: index-configdos
+          hostPath:
+            path: "/home/ec2-user/App2/"
+            type: Directory
 ---
 apiVersion: v1
 kind: ConfigMap
