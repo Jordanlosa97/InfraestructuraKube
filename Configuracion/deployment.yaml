@@ -552,7 +552,7 @@ data:
             location / {
                 proxy_pass         http://localhost:5000;
             }
-            location /please {
+            location /web2 {
                 proxy_pass         http://localhost:80/index.html;
                 proxy_redirect     off;
             }
